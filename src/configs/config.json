@@ -1,0 +1,36 @@
+{
+    "settings": {
+        "lang": "english",
+        "debugMode": false,
+        "library": 0,
+        "logger": 1,
+        "db": 1,
+        "guildConfigCache": 1000
+    },
+    "prefixes": {
+        "general": "+",
+        "admin": "$$",
+        "owner": ".."
+    },
+    "info": {
+        "name": "AxonCore - eris",
+        "description": "AxonCore - Description",
+        "version": "0.1.0"
+    },
+    "staff": {
+        "owners": [{ "name": "Flicky", "id": "88120564400553984" }, { "name": "Khaaz", "id": "179908288337412096" }],
+        "admins": [{ "name": "", "id": "" }]
+    },
+    "template": {
+        "embeds": {
+            "help": "ffffff",
+            "global": 4315874,
+            "error": 15844367
+        },
+
+        "emotes": {
+            "error": ":x:",
+            "success": ":white_check_mark:"
+        }
+    }
+}
