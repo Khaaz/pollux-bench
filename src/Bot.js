@@ -7,7 +7,7 @@ import PolluxClient from './PolluxClient';
 import botConfig from './configs/config.json';
 import secret from './configs/secret.json';
 import lang from './configs/lang.json';
-import token from './token.json';
+const token =  secret.bot.token
 
 import MyUtils from './MyUtils';
 
@@ -40,6 +40,11 @@ secret.webhooks,
  *
  * new Client(token, erisOptions, AxonOptions) => Modules imported in Client
  */
+
+const SHARDS_PER_CLUSTER = parseInt(process.env.SHARDS_PER_CLUSTER, 10) || 1;
+const CLUSTER_ID = parseInt(process.env.CLUSTER_ID, 10) || 0;
+const TOTAL_SHARDS = parseInt(process.env.TOTAL_SHARDS, 10) || 1;
+
 const client = new Eris.Client(
     token,
     {
@@ -49,8 +54,13 @@ const client = new Eris.Client(
         getAllUsers: false,
         messageLimit: 100,
         restMode: true,
+        maxShards: TOTAL_SHARDS,
+        firstShardID: (SHARDS_PER_CLUSTER * CLUSTER_ID),
+        lastShardID: SHARDS_PER_CLUSTER * (CLUSTER_ID + 1) - 1,
+        intents: 5639,
         disableEvents: {
-            TYPING_START: true,
+          TYPING_START: true,
+          GUILD_MEMBER_SPEAKING: true,
         },
     },
 );
