@@ -6,14 +6,14 @@ pollux.on('commandExecution', (executed, fullLabel, { msg, command, guildConfig,
 
     pollux.dogstatsd.increment('axoncore.commands.count', [
         `guild:${msg.channel.guild.id}`,
-        `shard:${(msg.channel.guild && msg.channel.shard.id) || 'noshard'}`,
+        `shard:${(msg.channel.guild && msg.channel.guild.shard.id) || 'noshard'}`,
         `command_name:${command.label}`,
         `commands_category:${command.module.label}`,
     ] );
     pollux.dogstatsd.increment(`axoncore.commands.${command.label}`, ['type:commands'] );
 
-    pollux.dogstatsd.gauge('axoncore.exectime.full', endTime - context.startTime, [`shard:${(msg.channel.guild && msg.channel.shard.id) || 'no shard'}`, `command_name:${command.label}`] );
-    pollux.dogstatsd.gauge('axoncore.exectime.command', endTime - context.midTime, [`shard:${(msg.channel.guild && msg.channel.shard.id) || 'no shard'}`, `command_name:${command.label}`] );
+    pollux.dogstatsd.gauge('axoncore.exectime.full', endTime - context.startTime, [`shard:${(msg.channel.guild && msg.channel.guild.shard.id) || 'no shard'}`, `command_name:${command.label}`] );
+    pollux.dogstatsd.gauge('axoncore.exectime.command', endTime - context.midTime, [`shard:${(msg.channel.guild && msg.channel.guild.shard.id) || 'no shard'}`, `command_name:${command.label}`] );
 } );
 
 pollux.on('listenerExecution', (executed, eventName, label, { listener, guildConfig } ) => {
