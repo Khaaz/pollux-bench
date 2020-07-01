@@ -5,7 +5,7 @@ pollux.on('commandExecution', (executed, fullLabel, { msg, command, guildConfig,
     const endTime = performance.now();
 
     pollux.dogstatsd.increment('axoncore.commands.count', [
-        `guild:${msg.guild.id}`,
+        `guild:${msg.channel.guild.id}`,
         `shard:${(msg.channel.guild && msg.channel.shard.id) || 'noshard'}`,
         `command_name:${command.label}`,
         `commands_category:${command.module.label}`,
