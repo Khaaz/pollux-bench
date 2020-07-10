@@ -4,7 +4,7 @@ const TotalShards  = Instances*ShardsPerCluster;
 
 const PLX = {
   name: "AXONCORE",
-  exec_mode: "fork",
+  exec_mode: "cluster",
   script: "index.js",
   cwd: "src",
   instance_var: 'CLUSTER_ID',
